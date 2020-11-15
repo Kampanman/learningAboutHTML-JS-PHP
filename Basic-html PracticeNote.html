@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Basic-html PracticeNote</title>
+  <link rel="stylesheet" href="Basic-html PracticeNote.css">
+  <script type="text/javascript" src="javascript.js">
+    ここにJavaScriptを記述すること。
+  </script>
+</head>
+
+<body>
+<header class="container center">
+  <div class="cc1">
+    <h1><b>まずはAtomエディタの便利なコーディング技を押さえよう！</b></h1>
+    <h2>複数のカーソル</h2>
+    <p>MacであればCmd（command）キーを、Windows/LinuxであればCtrlキーを押しながら、タイピングしたいすべての場所をクリックすると、複数の個所に同一のテキストを入力できる。</p>
+    <h2>行の複製</h2>
+    <p>Cmd + Shift + D (Mac)<br>
+    Ctrl + Shift + D (Windows/Linux)</p>
+    <h2>現在選択中の行の上または下へ移動</h2>
+    <p>Cmd + Ctrl + ↑または↓ (Mac)<br>
+    Ctrl + ↑または↓ (Windows/Linux)</p>
+    <h2>選択中の文字の第二候補の選択</h2>
+    <p>Cmd + D (Mac)<br>
+    Ctrl + D (Windows/Linux)<br>
+    これで、強調表示された言葉や、第二候補の言葉または文字を選択できる。</p>
+    <h2>選択中の文字の第二候補の選択解除</h2>
+    <p>Cmd + U (Mac)<br>
+    Ctrl + U (Windows/Linux)<br>
+    このキーボードショットカットで直前に選択した文字を逆順で解除できる。</p>
+    <h2>コメントのオン・オフ切り替え</h2>
+    <p>Cmd + / (Mac)<br>
+    Ctrl + / (Windows/Linux)</p>
+
+      ・<a href="https://www.webprofessional.jp/12-favorite-atom-tips-and-shortcuts-to-improve-your-workflow/">便利すぎて笑った！Atomの爆速コーディング技を海外エンジニアに教わった</a> より抜粋
+  </div>
+  <hr>
+  <div class="cc2">
+  <br><br>
+<pre><b>ここまでのコード</b><br>
+＜h1＞＜b＞まずはAtomエディタの便利なコーディング技を押さえ
+よう！＜/b＞＜/h1＞
+＜br＞
+＜h2＞複数のカーソル＜/h2＞
+＜p＞MacであればCmd（command）キーを、Windows/Linuxであれ
+ばCtrlキーを押しながらタイピングしたいすべての場所をクリック
+すると、複数の個所に同一のテキストを入力できる。＜/p＞
+＜h2＞行の複製＜/h2＞
+＜p＞Cmd + Shift + D (Mac)＜br＞
+Ctrl + Shift + D (Windows/Linux)＜/p＞
+＜h2＞現在選択中の行の上または下へ移動＜/h2＞
+＜p＞Cmd + Ctrl + ↑または↓ (Mac)＜br＞
+Ctrl + ↑または↓ (Windows/Linux)＜/p＞
+＜h2＞選択中の文字の第二候補の選択＜/h2＞
+＜p＞Cmd + D (Mac)＜br＞
+Ctrl + D (Windows/Linux)＜br＞
+これで、強調表示された言葉や、第二候補の言葉または文字を選択
+できる。＜/p＞
+＜h2＞選択中の文字の第二候補の選択解除＜/h2＞
+＜p＞Cmd + U (Mac)＜br＞
+Ctrl + U (Windows/Linux)＜br＞
+このキーボードショットカットで直前に選択した文字を逆順で解除
+できる。＜/p＞
+＜h2＞コメントのオン・オフ切り替え＜/h2＞
+＜p＞Cmd + / (Mac)＜br＞
+Ctrl + / (Windows/Linux)＜/p＞
+
+  ・＜a href="https://www.webprofessional.jp/12-favori
+  te-atom-tips-and-shortcuts-to-improve-your-workflow/"＞
+  便利すぎて笑った！Atomの爆速コーディング技を海外エンジニア
+  に教わった＜/a＞ より抜粋
+</pre>
+<br>
+<pre><b>ここまでのＣＳＳ</b><br>
+  header h1 {
+    font-size: 20px;
+  }
+  header h2 {
+    font-size: 16px;
+  }
+  header h2 + p {
+    margin-left: 10px;
+  }
+  .container {
+    display: flex;
+    /* flexにすることで、このクラスをつけたボックスの内側に
+    ボックスが横に並ぶようになる */
+    /* ここで、「flex-direction: column」と指定することで、
+    横並びの要素を縦並びにできる。横にしたい場合は「wrap」に
+    する */
+  }
+  .cc1 {
+    padding-right: 10px;
+  }
+  .cc2 {
+    display: inline-block;
+  }
+</pre>
+  </div>
+</header>
+<hr>
+
+  <div class="container center">
+  <div class="cc1 harry">
+  <p>
+    私の好きな映画は、<a href="http://d-kamiichi.com/archives/12913">ハリー・ポッターシリーズ</a>だ。
+  　      <pre>URL:http://d-kamiichi.com/archives/12913</pre>
+    <em style="font-size: 12px;">※ URLのことを「絶対パス」ともいう。</em>
+  </p>
+  <br>
+  <h1><a href="#">ハリーポッターシリーズのタイトル</a></h1>
+  <ol>
+    <li>ハリー・ポッターと賢者の石</li>
+    <li>ハリー・ポッターと秘密の部屋</li>
+    <li>ハリー・ポッターとアズカバンの囚人</li>
+    <li>ハリー・ポッターと炎のゴブレット</li>
+    <li>ハリー・ポッターと不死鳥の騎士団</li>
+    <li>ハリー・ポッターと謎のプリンス</li>
+    <li>ハリー・ポッターと死の秘宝</li>
+  </ol>
+  <br>
+  <h2>ハリーポッターシリーズのＱ＆Ａ</h2>
+  <p>第1部～第3部の内容から出題</p>
+  <dl>
+    <dt>Q1.賢者の石を作ったのは誰？</dt>
+      <dd>A1.ニコラス・フラメル</dd>
+    <dt>Q2.グリフィンドール寮の創始者の名前は？</dt>
+      <dd>A2.ゴドリック・グリフィンドール</dd>
+    <dt>Q3.シリウス・ブラックは何というニックネームで呼ばれてた？</dt>
+      <dd>A3.パッドフット</dd>
+  </dl>
+  </div>
+  <hr>
+  <div class="cc2 harry">
+    <br><br>
+<pre><b>ここまでのコード</b><br>
+＜div class="container"＞
+＜div class="cc1 harry"＞
+＜p＞
+  私の好きな映画は、＜a href="http://d-kamiichi.com/archives/12913"＞
+  ハリー・ポッターシリーズ＜/a＞だ。
+　      ＜pre＞URL:http://d-kamiichi.com/archives/12913＜/pre＞
+  ＜em style="font-size: 12px;"＞※ URLのことを「絶対パス」
+  ともいう。＜/em＞
+＜/p＞
+＜br＞
+＜h1＞＜a href="#"＞ハリーポッターシリーズのタイトル＜/a＞
+＜/h1＞
+＜ol＞
+  ＜li＞ハリー・ポッターと賢者の石＜/li＞
+  ＜li＞ハリー・ポッターと秘密の部屋＜/li＞
+  ＜li＞ハリー・ポッターとアズカバンの囚人＜/li＞
+  ＜li＞ハリー・ポッターと炎のゴブレット＜/li＞
+  ＜li＞ハリー・ポッターと不死鳥の騎士団＜/li＞
+  ＜li＞ハリー・ポッターと謎のプリンス＜/li＞
+  ＜li＞ハリー・ポッターと死の秘宝＜/li＞
+＜/ol＞
+＜br＞
+＜h2＞ハリーポッターシリーズのＱ＆Ａ＜/h2＞
+＜p＞第1部～第3部の内容から出題＜/p＞
+＜dl＞
+  ＜dt＞Q1.賢者の石を作ったのは誰？＜/dt＞
+    ＜dd＞A1.ニコラス・フラメル＜/dd＞
+  ＜dt＞Q2.グリフィンドール寮の創始者の名前は？＜/dt＞
+    ＜dd＞A2.ゴドリック・グリフィンドール＜/dd＞
+  ＜dt＞Q3.シリウス・ブラックは何というニックネームで呼ばれ
+  てた？＜/dt＞
+    ＜dd＞A3.パッドフット＜/dd＞
+＜/dl＞
+＜/div＞
+＜hr＞
+</pre>
+<br>
+<pre><b>ここまでのＣＳＳ</b><br>
+.harry p > a {
+  color: red;
+  /* pタグで囲った内部のaタグにこの値が適用される。 */
+  /* pタグのとaタグの間に余計なタグを入れていると効果が出ない */
+}
+.harry h1 {
+  font-size: 25px;
+}
+.harry > h2 + p {
+  color: red;
+  /* （「harry」クラス内で）h2の次に来るpタグ（囲った内側じゃ
+  ないよ）にこの値が適用される。 */
+</pre>
+  </div>
+  </div>
+  <hr>
+
+  <h2>以下をクリックしてhtmlを見てみよう</h2>
+  <a href="../JavaScript Tutorial/JS-basics.html">JS-basics</a>
+<pre><b>こちらのコード</b><br>
+＜a href="../JavaScript Tutorial/JS-basics.html"＞JS-basics＜/a＞
+<b>これで、そのディレクトリ（フォルダ）の一つ上の場所にある、
+  「JavaScript Tutorial」というディレクトリに格納されている、
+  「JS-basics.html」のファイルを閲覧することができる。</b>
+</pre>
+
+  <h2><b>iframeプロパティ</b></h2>
+  <iframe src="simpleFormNote.html" width="300" height="100">
+    このページはiframe対応ブラウザでご覧ください。
+  </iframe><br>
+<pre><b>こちらのコード</b><br>
+＜iframe src="simpleFormNote.html" width="300" height="100"＞
+このページはiframe対応ブラウザでご覧ください。
+＜/iframe＞
+</pre>
+  <hr>
+
+  <div class="container center">
+  <div class="cc1">
+  <h2>tableプロパティ</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>日本語</th>
+        <th>英語</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>東京</td>
+        <td>tokyo</td>
+      </tr>
+      <tr>
+        <td>大阪</td>
+        <td>Osaka</td>
+      </tr>
+    <tfoot>
+      <tr>
+        <td colspan="2">ご覧いただき、ありがとうございました！</td>
+      </tr>
+    </tfoot>
+    </tbody>
+  </table>
+  </div>
+  <hr>
+  <div class="cc2">
+  <pre><b>こちらのコード</b><br>
+＜p＞tableプロパティ＜/p＞
+＜table border="1"＞
+  ＜thead＞
+    ＜tr＞
+      ＜th＞日本語＜/th＞
+      ＜th＞英語＜/th＞
+    ＜/tr＞
+  ＜/thead＞
+  ＜tbody＞
+    ＜tr＞
+      ＜td＞東京＜/td＞
+      ＜td＞tokyo＜/td＞
+    ＜/tr＞
+    ＜tr＞
+      ＜td＞大阪＜/td＞
+      ＜td＞Osaka＜/td＞
+    ＜/tr＞
+  ＜tfoot＞
+    ＜tr＞
+      ＜td colspan="2"＞ご覧いただき、ありがとうございました！＜/td＞
+    ＜/tr＞
+  ＜/tfoot＞
+  ＜/tbody＞
+＜/table＞</pre>
+<br>
+<pre>trはtableの略、hはheadのh、dはbodyのdのようだ。</pre>
+  </div>
+  </div>
+  <hr>
+
+  <div class="container center">
+  <div class="cc1">
+  <h2>Formプロパティ</h2>
+    <form action="index.html" method="post">
+      <pre>「action」で、どこにformタグで囲んだデータを送りたいのかを指定し、
+「method」で、そのページに入力情報を送れることを示す。</pre>
+      <fieldset>
+        <legend>IDとパスワード</legend>
+        <label for="id">ID:</label><input type="text" name="id" id="id" required placeholder="入力必須です"><br>
+        <label for="pass">Password:</label><input type="text" name="password" id="pass" required placeholder="入力必須です"><br>
+        <pre>inputタグに「required」をつけると入力必須になり、<br>「placeholder」をつけると、その語句が表示される。</pre>
+        <textarea name="name" rows="10" cols="50" placeholder="こちらに情報を入力してください"></textarea><br>
+        <input type="radio" name="gender" value="male" id="male" checked><label for="male">男性</label><br>
+        <input type="radio" name="gender" value="female" id="female"><label for="female">女性</label><br>
+        <hr>
+        <input type="checkbox" name="music" value="rock" id="rock"><label for="rock">ロック</label><br>
+        <input type="checkbox" name="music" value="jazz" id="jazz"><label for="jazz">ジャズ</label><br>
+        <input type="checkbox" name="music" value="rab" id="rab"><label for="rab">Ｒ＆Ｂ</label><br>
+        <pre>idをつけてlabelのforに同名の値を付与すると、<br>
+        その名前を入力するだけでもクリックが反映されるようだ。</pre>
+        <hr>
+        <select name="address">
+          <optgroup label="首都圏">
+            <option value="tokyo">東京</option>
+            <option value="kanagawa">神奈川</option>
+            <option value="saitama">埼玉</option>
+            <option value="chiba">千葉</option>
+          </optgroup>
+          <optgroup label="京阪神">
+            <option value="kyoto">京都</option>
+            <option value="osaka">大阪</option>
+            <option value="hyogo">兵庫</option>
+          </optgroup>
+        </select>
+      </fieldset>
+    </form>
+  </div>
+  <hr>
+  <div class="cc2">
+<pre><b>ここまでのコード</b><br>
+＜form action="index.html" method="post"＞
+「action」で、どこにformタグで囲んだデータを送りたいのかを指定し、
+「method」で、そのページに入力情報を送れることを示す。
+＜fieldset＞
+  ＜legend＞IDとパスワード＜/legend＞
+  ＜label for="id"＞ID:＜/label＞＜input type="text"
+   name="id" id="id" required placeholder="入力必須です"＞＜br＞
+  ＜label for="pass"＞Password:＜/label＞＜input
+   type="text" name="password" id="pass" required
+    placeholder="入力必須です"＞＜br＞
+
+  inputタグに「required」をつけると入力必須になり、
+  「placeholder」をつけると、その語句が表示される。
+  ＜textarea name="name" rows="10" cols="50"
+   placeholder="こちらに情報を入力してください"＞＜/textarea＞＜br＞
+  ＜input type="radio" name="gender" value="male"
+   id="male" checked＞＜label for="male"＞男性＜/label＞＜br＞
+  ＜input type="radio" name="gender" value="female"
+   id="female"＞＜label for="female"＞女性＜/label＞＜br＞
+  ＜hr＞
+  ＜input type="checkbox" name="music" value="rock"
+   id="rock"＞＜label for="rock"＞ロック＜/label＞＜br＞
+  ＜input type="checkbox" name="music" value="jazz"
+   id="jazz"＞＜label for="jazz"＞ジャズ＜/label＞＜br＞
+  ＜input type="checkbox" name="music" value="rab"
+   id="rab"＞＜label for="rab"＞Ｒ＆Ｂ＜/label＞＜br＞
+
+  idをつけてlabelのforに同名の値を付与すると、
+  その名前を入力するだけでもクリックが反映されるようだ。
+  ＜hr＞
+  ＜select name="address"＞
+    ＜optgroup label="首都圏"＞
+      ＜option value="tokyo"＞東京＜/option＞
+      ＜option value="kanagawa"＞神奈川＜/option＞
+      ＜option value="saitama"＞埼玉＜/option＞
+      ＜option value="chiba"＞千葉＜/option＞
+    ＜/optgroup＞
+    ＜optgroup label="京阪神"＞
+      ＜option value="kyoto"＞京都＜/option＞
+      ＜option value="osaka"＞大阪＜/option＞
+      ＜option value="hyogo"＞兵庫＜/option＞
+    ＜/optgroup＞
+  ＜/select＞
+＜/fieldset＞
+＜/form＞
+＜/div＞
+＜hr＞
+</pre>
+  </div>
+  </div>
+  <hr>
+
+<div class="container center">
+  <div class="cc1">
+  <h2>div要素とclass</h2>
+    <div class="base black">ここは黒です</div>
+    <div class="base red">ここは赤です</div>
+    <div class="base green">ここは緑です</div>
+  </div>
+    <hr>
+  <div class="cc2">
+  <pre>
+CSSはこのような構成になっている
+  セレクタ {プロパティ: 値;}
+  </pre>
+  </div>
+</div>
+<hr>
+
+<div class="container center">
+  <div class="cc1">
+  <h2>h3要素と classをつけたp</h2>
+  <h3>この下のpは紫の背景で黄色の文字、500pxのボックス</h3>
+  <p class="pArea">はい！このとおり。<br>
+    設定セレクタは次のとおり。</p>
+  </div>
+    <hr>
+  <div class="cc2">
+  <pre>
+h3 ~ .pArea {
+  width: 500px;
+  color: yellow;
+  background-color: purple;
+  font-size: 15px;
+}　（～は、「間接セレクタ」といって、これで兄弟関係を示せる）
+  </pre>
+  </div>
+</div>
+<hr>
+
+<div class="container center">
+  <div class="cc1">
+  <h2> 子要素についての動的な判別によるセレクタ </h2>
+  <div class="lists">
+    <ul>
+      <li>The 1st child of ul.</li>
+      <li>2nd child.</li>
+      <li>3rd child.</li>
+      <li>4th child.</li>
+      <li>The last child.</li>
+    </ul>
+  </div>
+  </div>
+    <hr>
+  <div class="cc2">
+  <pre>
+    最初の子要素：first-child
+    最後の子要素：last-child
+    唯一の子要素：only-child
+    X番目の子要素：x-child
+  相対的なサイズの単位
+    -ex（"ｘ"の高さを基準とするときのサイズ）
+    -em （一文字分の高さを基準とするときのサイズ）
+    -px（ピクセル）
+    -%（パーセント）親要素の基準に対しての割合で決めるサイズ
+
+.lists > ul {
+  margin: 25px auto 0;
+  /* こうすることで、ulのエリアだけ中央表示にできる。 */
+  padding: 12px;
+  width: 400px;
+  border: 2px dotted grey;
+  list-style-position: inside;
+  font-size: 1.5em;
+}
+.lists>ul>li {
+  margin: 0;
+  padding: 15px;
+  border-bottom: 2px solid #224a6b;
+}
+/* 疑似要素を使うと */
+.lists>ul>li:first-child {
+  color: white;
+  background-color: red;
+}
+.lists>ul>li:last-child {
+  color: white;
+  background-color: blue;
+  border-bottom: none;
+  /* リストの最後のものだけ下線を消すことができる。 */
+    }
+  </pre>
+  </div>
+</div>
+<hr>
+<div class="container center">
+<pre>
+  ＜基本形＞
+  <label class="blind"><input type="checkbox"><span class="memoblind">
+タグのtypeやクラス、あるいはidを利用して、
+選択していたものを属性対象にすることもできる。
+-書き方
+[属性名]
+[属性名="値"]
+
+[type=checkbox]{display:none}
+[type=checkbox]+span{visibility:hidden}
+[type=checkbox]:checked+span{visibility:visible}
+label{
+display:inline-block;
+border-bottom:solid 1px #009999
+}
+span {
+font-weight: bold;
+color: orange}
+      </span></label>
+</pre>
+<br>
+<hr>
+<pre>
+  ＜応用形＞
+  <label class="blind"><input type="checkbox"><span class="memoblind">
+  [type=checkbox]{display:none}
+  [type=checkbox]+span{visibility:hidden}
+  [type=checkbox]:checked+span{visibility:visible}
+  .blind{
+    display:inline-block;
+    border-bottom:solid 1px #009999
+  }
+  pre>.blind{
+    display:inline-block;
+    border: 2px solid #009999;
+  }
+  span {
+    font-weight: bold;
+    color: orange;
+  }
+  .memoblind {
+    font-weight: normal;
+    color:blue;
+  }
+</span></label>
+</pre>
+</div>
+<hr>
+<div class="container">
+  <div class="cc1">
+  <h2> _____ </h2>
+
+  </div>
+    <hr>
+  <div class="cc2">
+  <pre>
+
+  </pre>
+  </div>
+</div>
+<hr>
+<div class="tutorialText">
+  <p>font-weightについて</p>
+    <pre>
+      <label class="blind"><input type="checkbox"><span class="memoblind">
+      font-weight（文字の太さ）は、
+      言葉で指定することも、数字で指定することもできる。
+        -言葉で指定する場合
+          normal: 通常
+          bold: 太い
+          <label class="blind"><input type="checkbox"><span>border</span></label>: やや太い
+          <label class="blind"><input type="checkbox"><span>lighter</span></label>: やや細い
+          <label class="blind"><input type="checkbox"><span>inherit</span></label>: 親要素の指定を引き継ぐ
+        -数字で指定する場合
+          100~<label class="blind"><input type="checkbox"><span>900</span></label>で指定する
+          100単位で指定されることが多い
+          （normal = <label class="blind"><input type="checkbox"><span>400</span></label> , bold = <label class="blind"><input type="checkbox"><span>700</span></label>)
+      ・文字スタイル（font-style）について
+        -normal: 通常
+        -<label class="blind"><input type="checkbox"><span>italic</span></label>: 斜体
+        -<label class="blind"><input type="checkbox"><span>inherit</span></label>: 親要素の指定を継承する
+      </span></label>
+    </pre>
+</div>
+</body>
+</html>

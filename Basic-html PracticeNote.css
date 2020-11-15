@@ -1,0 +1,128 @@
+/* headerエリアのＣＳＳ */
+header h1 {
+  font-size: 17.5px;
+}
+header h2 {
+  font-size: 16px;
+}
+header h2 + p {
+  margin-left: 10px;
+}
+.container {
+  display: flex;
+  /* flexにすることで、このクラスをつけたボックスの内側にボックスが横に並ぶようになる */
+  /* ここで、「flex-direction: column」と指定することで、横並びの要素を縦並びにできる。横にしたい場合は「wrap」にする */
+}
+.cc1 {
+  min-width: 500px;
+  padding-right: 10px;
+}
+.cc2 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+/* headerエリアのＣＳＳはここまで */
+
+/* 「harry」クラスエリアのＣＳＳ */
+.harry p > a {
+  color: red;
+  /* pタグで囲ってすぐの、内部のaタグにこの値が適用される。 */
+  /* pタグのとaタグの間に余計なタグを入れていると効果が出ない */
+}
+.harry h1 {
+  font-size: 25px;
+}
+.harry > h2 + p {
+  color: red;
+}
+  /* （「harry」クラス内で）h2の次に来るpタグ（囲った内側じゃないよ）にこの値が適用される。 */
+/* 「harry」クラスエリアのＣＳＳはここまで */
+
+.black {color: black;}
+.red {color: red;}
+.green {color: green;}
+.base {
+  border: 1px solid;
+  padding: 5px}
+.black, .red, .green {
+  width: 500px;
+  font-size: 20px;
+  font-weight: bold;
+  }
+
+  p > a {
+    color: red;
+    /* pタグで囲った内部のaタグにこの値が適用される。 */
+  }
+  main > h3 + p {
+    color: red;
+    /* （「main」内で）h2の次に来るpタグ（囲った内側じゃないよ）にこの値が適用される。 */
+  }
+  h3 ~ .base {
+    width: 500px;
+    padding: 5px;
+  }
+  h3 ~ .pArea {
+    width: 500px;
+    color: yellow;
+    background-color: purple;
+    font-size: 15px;
+    padding: 5px;
+  }
+
+  .lists > ul {
+    margin: 25px auto 0;
+    /* こうすることで、ulのエリアだけ中央表示にできる。 */
+    padding: 12px;
+    width: 400px;
+    border: 2px dotted grey;
+    list-style-position: inside;
+    font-size: 1.5em;
+  }
+  .lists>ul>li {
+    margin: 0;
+    padding: 15px;
+    border-bottom: 2px solid #224a6b;
+  }
+  /* 疑似要素を使うと */
+  .lists>ul>li:first-child {
+    color: white;
+    background-color: red;
+  }
+  .lists>ul>li:last-child {
+    color: white;
+    background-color: blue;
+    border-bottom: none;
+    /* リストの最後のものだけ下線を消すことができる。 */
+  }
+
+ .center{
+   width: 1000px;
+   margin: 0 auto;
+ }
+
+pre {
+  line-height: 16px;
+}
+
+.series~li {line-height:25px}
+[type=checkbox]{display:none}
+[type=checkbox]+span{visibility:hidden}
+[type=checkbox]:checked+span{visibility:visible}
+.blind{
+  display:inline-block;
+  border-bottom:solid 1px #009999
+}
+pre>.blind{
+  display:inline-block;
+  border: 1px solid #009999;
+  margin: 1px 3px;
+}
+span {
+  font-weight: bold;
+  color: orange;
+}
+.memoblind {
+  font-weight: normal;
+  color:blue;
+}
