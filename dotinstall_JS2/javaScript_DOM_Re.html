@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript_DOMSample</title>
+</head>
+<style>
+  .boldRed {
+    color: red;
+    font-weight: 600;
+  }
+  .boldOrange {
+    color: orange;
+    font-weight: 600;
+  }
+  .pinkBack {
+    background-color: pink;
+  }
+  #button2, 
+  #button3 {
+    display: block;
+  }
+</style>
+<body>
+  <button>押すなよ？</button>
+  <section>
+    <h1></h1>
+    <ol>
+      <li id="bizzare_1"></li>
+      <li id="bizzare_2"></li>
+      <li id="bizzare_3"></li>
+      <li id="bizzare_4"></li>
+      <li id="bizzare_5"></li>
+    </ol>
+    <h2 id="turnRed"></h2>
+      <p></p>
+      <p></p>
+      <p></p>
+    <h1></h1>
+    <h1 id="target"></h1>
+  </section>
+    <button id="button2">文字色、変えますか？</button>
+    <button id="button3">背景色、変えますか？</button>
+
+  <script>
+    'use strict';
+    const dc =document;
+    {
+      function attack(){
+        dc.querySelector('h1').textContent = 'くらえッ！';
+      }
+      function title(){
+        dc.querySelector('h1').textContent = '日本の「不覚にも笑った地名」ベスト５';
+      }
+      function bizzare_5(){
+        dc.getElementById('bizzare_5').textContent = '鼻毛の滝（はなげのたき） in 群馬県';
+      }
+      function bizzare_4(){
+        dc.getElementById('bizzare_4').textContent = '女体入口（にょたいいりぐち） in 長野県';
+      }
+      function bizzare_3(){
+        dc.getElementById('bizzare_3').textContent = '面白山（おもしろやま） in 宮城県・山形県';
+      }
+      function bizzare_2(){
+        dc.getElementById('bizzare_2').textContent = '漫湖（ま〇こ） in 沖縄県';
+      }
+      function bizzare_1(){
+        dc.getElementById('bizzare_1').textContent = '珍小島（ち〇こじま） in 北海道';
+        dc.getElementById('bizzare_1').style.fontWeight = '600';
+      }
+
+      setTimeout(attack, 2000);
+      setTimeout(title, 4000);
+      setTimeout(bizzare_5 , 6000);
+      setTimeout(bizzare_4 , 7000);
+      setTimeout(bizzare_3 , 8000);
+      setTimeout(bizzare_2 , 9000);
+      setTimeout(bizzare_1 , 12000);
+
+      function title_2(){
+        dc.querySelector('h2').textContent = '世界の「不覚にも笑った地名」ベスト５';
+      }
+      function P_bizzare_3(){
+        dc.querySelectorAll('p')[2].textContent = 'スケベニンゲン in オランダ';
+      }
+      function P_bizzare_2(){
+        dc.querySelectorAll('p')[1].textContent = 'マン湖 in アメリカ';
+      }
+      function P_bizzare_1(){
+        dc.querySelectorAll('p')[0].textContent = 'チンポー湖 in 中国';
+      }
+
+      setTimeout(title_2, 14000);
+      setTimeout(P_bizzare_3, 16000);
+      setTimeout(P_bizzare_2, 17000);
+      setTimeout(P_bizzare_1, 18000);
+
+      dc.querySelectorAll('button')[0].addEventListener('click', ()=> {
+        dc.getElementById('target').textContent = 'だから押すなっつーの！';
+      dc.getElementById('target').style.color = 'red';
+      });
+
+      dc.getElementById('button2').addEventListener('click', () => {
+      dc.getElementById('turnRed').className = 'boldRed';
+      dc.querySelector('p').classList.add('boldOrange');
+    });
+
+    dc.getElementById('button3').addEventListener('click', () => {
+        dc.querySelector('section').classList.toggle('pinkBack');
+      });
+    }
+  </script>
+</body>
+</html>

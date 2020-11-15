@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>jQueryの練習</title>
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <style>
+        .font36 {
+            font-size:36px;
+        }
+    </style>
+</head>
+<body>
+    <h1>jQueryの練習</h1>
+    <div id="main">
+    <h2>押すと消えますヨ</h2>
+    <p>これは練習です。こちらは、<a href="http://google.com/">リンク</a>です。</p>
+    <ul id="menu">
+        <li>0番</li>
+        <li class="listitem">1番</li>
+        <li class="listitem">2番</li>
+        <li><a href="http://yahoo.com/">3番</a></li>
+    </ul>
+    <input type="text" value="静岡" id="search">
+    <input type="submit" value="コンソール">
+    </div><!-- /main -->
+    <script>
+        $(function() {
+            // .val（valueの中身をそのidやクラスがついたものに反映させる）
+            $('#search').val('浜松');
+            console.log($('#search').val());
+        });
+            // // .click（押すと効果が反映される）
+            // $('.listitem').click(function() {
+            //     $(this).css('color', 'blue');
+            // }); //thisだと押されたそのものに効果が反映される
+            // $('.listitem:eq(0)').click(); //シミュレーションしたい場合はこうするらしい。
+
+            // .toggle
+            $('.listitem').toggle(
+                function() {
+                    $(this).css('color', 'blue');
+                },
+                function() {
+                    $(this).css('color', 'black');
+                }
+            ); //toggleの場合は、中に書いた二つの効果が切り替わる。
+
+            // .mouseover, .mouseout, .hover
+            $('li').hover(
+                function() {
+                    $(this).addClass('font36');
+                },
+                function() {
+                    $(this).removeClass('font36');
+                }
+
+            );
+
+            // .focus, .blur, .change
+            $('#search')
+                .focus(function() {
+                    $(this).css('color', 'red');
+                }) //フォーカスされた時
+
+                .blur(function() {
+                    $(this).css('color', 'black');
+                }) //フォーカスが外れた時
+
+                .change(function() {
+                    alert('値が変わったよ！');
+                }); //変化が起きた時
+            // .show / .hide
+            $('h1').hide(1000, function() {
+                alert('隠し終わりました！'); //こちらはコールバック関数
+            })
+            .show(3000);
+
+
+            // セレクタ.メソッド
+            // 要素の作成・追加
+            // 並列に追加（before after）
+            // 子要素として追加（prepend append）
+            var input = $('<input>').attr({
+                'type':'submit', //(;じゃなくて,)
+                'value':'これで送信'
+                });
+            $('#menu').after(input);
+            //attrは要素に諸属性をつけるためのもの
+            // .afterなら、$('')の要素の後ろに、.beforeなら前に表示される
+            $('#menu').prepend('<li>BF prepended by jquery</li>'); //子要素の一番前につけたい場合
+            $('#menu').append('<li>AF appended by jquery</li>'); //子要素の一番後につけたい場合
+
+            $(function() {
+                $('h2').css({ //こういう風に{}で囲んでcssファイル内のように記述すればいい。
+                'cursor': 'pointer',
+                'color': 'orange'
+                });
+            });
+ 
+            $(function() {
+            // 要素の削除（remove / empty）
+                $('h2').click(
+                    function() {
+                        $(this).remove();
+                    }); //要素丸ごと削除される
+                $('li:eq(2)').click(function() {
+                    $(this).empty(); //要素は残すが中身だけが消える
+                });
+            });
+        
+            $(function() {
+            // セレクタ.メソッド
+            // html text wrap （いずれも「書き換える」効果）
+                $('li:eq(0)').html('<a href="">リンク</a>があります！');
+                $('li:eq(1), li:eq(5)').text('書き換えました！');
+                $('li:eq(2)').wrap('<strong></strong>');
+            });
+
+            $(function() {
+            // セレクタ.メソッド
+            // 要素の探索
+            // parent / children
+            // next / prev
+                // $('ul').parent().css('color', 'red');
+                $('li:eq(1)').next().css('color', 'red');
+            });
+            
+    </script>
+</body>
+</html>

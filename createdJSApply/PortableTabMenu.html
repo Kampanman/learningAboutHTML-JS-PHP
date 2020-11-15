@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyTabsMenu</title>
+  <style>
+    body {font-size: 14px;}
+
+    .container {
+      margin: 30px auto;
+      width: 500px;
+    }
+
+    .menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex; /* これを設定すればタブが横並びになる */
+    }
+
+    .menu li a {
+      display: inline-block;
+      width: 100px;
+      text-align: center;
+      padding: 8px 0;
+      color: #333;
+      text-decoration: none;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .menu li a.active {
+      background: #333;
+      color: #fff;
+    }
+    .menu li a:not(.active):hover {
+      opacity: 0.5;
+      transition: opacity 0.4s; /* transition内に書き込むopasityなどの次に:をつける必要はない */
+    }
+
+    .content.active {
+      background: #333;
+      color: #fff;
+      min-height: 150px;
+      padding: 12px;
+      display: block;
+    }
+
+    .content {display: none;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <ul class="menu">
+      <li><a href="" class="active" data-id="craw">カラス</a></li>
+      <li><a href="" data-id="elephant">ぞうさん</a></li>
+      <li><a href="" data-id="horses">おうま</a></li>
+      <li><a href="" data-id="Higashimurayama">東村山</a></li>
+      <!-- 下の各idに対して同じ名前のdata-idを持たせておいた -->
+    </ul>
+
+    <section class="content active" id="craw">
+      <p>カ～ラ～ス～　なぜ鳴くの～</br>
+      <b style="color: red; font-size: 20px;">カラスの勝手でしょーーーー</b></p>
+      <p style="text-align: right;">by Dear <b>Ken Shimura</b></p>
+    </section>
+
+    <section class="content" id="elephant">
+      <p>ぞ～さん　ぞ～さん</br>お～鼻が長いのネ</br>
+      そ～～～ヨ</br>
+      <b style="color: red; font-size: 20px;">チ〇チンも</b></br>
+      な～～がいのヨォォォォ</p>
+      <p style="text-align: right;">by Dear <b>Ken Shimura</b></p>
+    </section>
+
+    <section class="content" id="horses">
+      <p>おうまの親子は　仲良しこよし</br>
+      いつでも一緒に</br>
+      <b style="color: red; font-size: 20px;">ポックリポックリ死ぬよ</b></p>
+      <p style="text-align: right;">by Dear <b>Ken Shimura</b></p>
+    </section>
+
+    <section class="content" id="Higashimurayama">
+      <p>東村山　庭さきゃ多摩湖</br>
+      狭山 茶所 情が厚い</br>
+      東村山四丁目</br>
+      東村山四丁目</p>
+
+      <p>東村山三丁目</br>
+      ちょいと ちょっくらちょいと　ちょっと来てね</br>
+      一度はおいでよ三丁目</br>
+      一度はおいでよ三丁目</p>
+
+      <p><b style="color: red; font-size: 20px;">ワーオ</br>
+      ヒガシムラヤマ イッチョメ ワーオ</br>
+      イッチョメ イッチョメ ワーオ</br>
+      イッチョメ イッチョメ ワーオ</br>
+      ヒ・ガ・シ（ワオ）　ムラヤマ イッチョメ</br>
+      ワーオ</b></p>
+      <p style="text-align: right;">by Dear <b>Ken Shimura</b></p>
+    </section>
+  </div>
+  <script>
+    'use strict';
+    {
+      const dc = document;
+      const menuItems = dc.querySelectorAll('.menu li a');
+      const contents = dc.querySelectorAll('.content');
+      // ↑上のタブ要素を取得した
+
+
+      menuItems.forEach(clickedItem => {
+        //querySelectorAllで指定したもののうち、個々に同様の効果が出るように設定できる。
+        clickedItem.addEventListener('click', e=>{
+          e.preventDefault();
+
+          menuItems.forEach(item => {
+            item.classList.remove('active');
+            //事前にすべての対象物からactiveクラスを取り去っておく
+          });
+          clickedItem.classList.add('active');
+          // ボタンをクリックしたものにactiveクラスがつく。
+
+          contents.forEach(content => {
+            content.classList.remove('active');
+          });
+          dc.getElementById(clickedItem.dataset.id).classList.add('active');
+          //clickedItem.dataset.idと設定すれば、クリックしたidのものを作動させられる。
+        });
+      });
+    }
+  </script>
+</body>
+</html>

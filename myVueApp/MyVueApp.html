@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyVueApp</title>
+  <style>
+    b > span {
+      font-size: 20px;
+      color:red;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app">
+    <p><b>そうです。ワダスが<span>「{{ name.replace('コ','〇') }}」</span>です。</b></p>
+    <like-component message="いいね" @increment="incrementTotal"></like-component>
+    <like-component message="やるね！" @increment="incrementTotal"></like-component>
+    <like-component message="ビックリ！" @increment="incrementTotal"></like-component>
+    <p>Total Likes : {{ total }}</p>
+    <p><input type="text" v-model="name"></p>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    (function() {
+      'use strict';
+
+      var likeComponent = Vue.extend({
+        // props: ['message'],
+        props: {
+          message: {
+            type: String,
+            dafault: 'いいね'
+          }
+        },
+        data: function() {
+          return {
+            count: 0 // 初期値はこう
+          }
+        },
+        template: '<button @click="countUp">{{ message }} {{ count }}</button>',
+        methods: {
+          countUp: function() {
+            this.count++;
+            this.$emit('increment');
+          }
+        }
+      }); // こうすれば、独自にコンポーネント（自作タグ）を設置できる。
+
+      var vm = new Vue({
+        el: '#app',
+        components: {
+          'like-component' : likeComponent
+          // 左がHTMLのタグ、右がJSで定義する変数。
+        },
+        data: {
+          name: '変なおじさん',
+          total: 0
+        },
+        methods: {
+          incrementTotal: function() {
+            this.total++;
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

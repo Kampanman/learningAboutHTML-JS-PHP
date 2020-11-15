@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShimukenTypingGame</title>
+  <style>
+    body {
+      padding-top: 40px;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+    }
+
+    #target {
+      font-size: 48px;
+      letter-spacing: .1em;
+    }
+
+  </style>
+</head>
+<body>
+  <p id="target">クリックすると はじまるゾ！</p>
+  <p id="result"></p>
+  <button id="reload">最初からリスタート</button>
+
+  <script>
+    'use strict';
+    {
+      const dc = document;
+
+      //画面再読込ボタンのonClick設定
+      var reload = dc.getElementById('reload');
+      reload.addEventListener('click', () => {
+        window.location.reload();
+      });
+
+      function setWord() {
+        //ここで新しい単語をセットする為の関数をつくる
+        //word = words[Math.floor(Math.random() * words.length)];
+        word = words.splice(Math.floor(Math.random() * words.length), 1)[0];
+        //これで単語の重複を防止した状態でランダムに単語を出力できる
+        //splice()は結果が配列となるので、一つだけ要素を取り出すために、[0]と設定する必要がある
+        target.textContent = word;
+        loc = 0;
+      }
+      const words = [
+        'aiiin!!',
+        'waaaaao!!!',
+        'karasunokattedesyo',
+        'Higashimurayama',
+        'ushiro!ushirooo!!!',
+        'daijobudaa',
+        'ah?andattee???',
+        'wadasugaHennaOjisandesu',
+        'daffunda!!',
+        'nandekonaruno!?'
+      ];
+      let word;
+      // wordsからランダムで出すのでconstとかでなくlet
+      let loc = 0;
+      let startTime; //開始時間を定義
+      let isPlaying = false;
+      //プレイ中にクリックしてリセットしないようにする
+      const target = dc.getElementById('target');
+
+      dc.addEventListener('click', () => {
+        if (isPlaying === true){
+          return;
+          //ゲームが既に始まっている場合にはこのクリックイベントを止める。その為の処理を示す。
+        }
+
+        isPlaying = true; //プレイ中の状態を示す
+        startTime = Date.now();
+        //クリックした時点での開始時間が設定される
+        setWord();
+      });
+
+      dc.addEventListener('keydown', e => {
+        if(e.key !== word[loc]){ //不正解だった場合の処理
+          return;
+          //キーを押しても反応しない（処理が一時的に止まる）ようにセットした
+        }
+         //正解だった場合の処理
+          loc++;
+          target.textContent = '_'.repeat(loc) + word.substring(loc);
+
+          if (loc === word.length){
+            if(words.length === 0){
+              const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(2);
+              //これで小数第二位までを表示したうえで秒単位で表示されるようになる
+              const result = dc.getElementById('result');
+              result.textContent = `Finished! ${elapsedTime} seconds!`;
+              return;
+              //returnと付けるのは、これ以上の処理が行われないようにする為である
+            }
+
+            setWord();
+          }
+      });
+      // 押したキーの情報が必要なため、こうしてイベントオブジェクトをつけておく
+    }
+  </script>
+</body>
+</html>

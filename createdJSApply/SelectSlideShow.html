@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SlideShow</title>
+  <style>
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    main {
+      width: 400px;
+      margin: 0 auto;
+    }
+
+    #main {
+      width: 400px;
+      height: 400px;
+      margin-bottom: 8px;
+    }
+
+    nav {margin-bottom: 8px;}
+    nav ul {
+      display: flex;
+      justify-content: space-between;
+    }
+    nav li {
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      font-size: 12px;
+      text-align: center;
+      padding: 5px;
+      cursor: pointer;
+      user-select: none;
+    }
+    nav li:hover {background: #f8f8f8;}
+    #play {width: 140px;}
+    #prev, #next {width: 60px;}
+    .thumbnails {
+      display: grid;
+      grid-template-columns: repeat(6,60px);
+      gap: 8px;
+    }
+    .thumbnails li {
+      cursor: pointer;
+      opacity: 0.4;
+    } 
+    .thumbnails li:hover,
+    .thumbnails li.current {
+      opacity: 1;
+    } 
+    .thumbnails img {
+      width: 56px;
+    } 
+  </style>
+</head>
+<body>
+  <main>
+    <img id="main">
+
+    <nav>
+      <ul>
+        <li id="prev">&lt;</li>
+        <li id="play">Play</li>
+        <li id="next">&gt;</li>
+      </ul>
+    </nav>
+
+    <ul id="thum" class="thumbnails"></ul>
+  </main>
+  <script>
+    'use strict';
+
+    {
+      const images = [];
+      for(let j=0; j<44; j++){
+        images.push("pictures/ogiriGags/ogiriGags ("+(j+1)+").jpg");
+      }
+      console.log(images);
+      let currentIndex = 0;
+
+      const mainImage = document.getElementById('main');
+      mainImage.src = images[currentIndex];
+
+      images.forEach((image, index) => {
+        const img = document.createElement('img');
+        img.src = image;
+        
+        const li = document.createElement('li');
+        if (index === currentIndex){
+          li.classList.add('current');
+        }
+        li.addEventListener('click', ()=>{
+          mainImage.src = image;
+          const thumbnails = document.querySelectorAll('.thumbnails > li');
+          thumbnails[currentIndex].classList.remove('current');
+          currentIndex = index;
+          thumbnails[currentIndex].classList.add('current');
+        });
+
+        li.appendChild(img);
+        document.querySelector('.thumbnails').appendChild(li);
+      });
+
+      const next = document.getElementById('next');
+      next.addEventListener('click', ()=> {
+        let target = currentIndex + 1;
+        if (target === images.length) {
+          target = 0; //最初のものから増やしていくから
+        }
+        document.querySelectorAll('.thumbnails > li')[target].click();
+      });
+
+      const prev = document.getElementById('prev');
+      prev.addEventListener('click', ()=> {
+        let target = currentIndex - 1;
+        if (target < 0) {
+          target = images.length - 1; //最後のものから減らしていくから
+        }
+        document.querySelectorAll('.thumbnails > li')[target].click(); //.thumbnailsクラスul内のliにすべて適用される
+      });
+
+      let timeoutId;
+
+      function playSlideshow(){
+        timeoutId = setTimeout(() => {
+          next.click();
+          playSlideshow();
+        }, 8000); //これで画像が10秒ごとに切り替わる
+      }
+
+      let isPlaying = false;
+
+      const play = document.getElementById('play');
+      play.addEventListener('click', ()=> {
+        if (isPlaying === false) {
+          playSlideshow();
+          play.textContent = 'Pause';
+        }else{
+          clearTimeout(timeoutId);
+          play.textContent = 'Play';
+        }
+        isPlaying = !isPlaying;
+      });
+    }
+  </script>
+</body>
+</html>

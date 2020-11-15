@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyVueToDo</title>
+  <style>
+    body {
+      font-size: 16px;
+      font-family: Verdana, sans-serif;
+    }
+
+    .container {
+      width:300px;
+      margin: auto;
+    }
+
+    #app h2 {
+      font-size: 20px;
+      border-bottom: 1px solid #ddd;
+      padding: 16px 0;
+    }
+    #app h2 > button {float: right;}
+
+    #app ul {
+      padding: 0;
+      list-style: none;
+    }
+    #app li {
+      line-height: 1.5;
+    }
+    #app li > span.done {
+      text-decoration: line-through;
+      color: #bbb;
+    }
+
+    .info {
+      color: #08c;
+      font-size: 12px;
+      font-weight: normal;
+    }
+
+    #app p {text-align: center;}
+    #app input[type="text"] {
+      padding: 2px;
+      width: 280px;
+      border-radius: 4px;
+    }
+
+    .command {
+      font-size: 12px;
+      cursor: pointer;
+      color: #08c;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="container">
+    <h2>
+      <button @click="purge">一括削除</button>
+      My ToDo Tasks
+      <span class="info">({{ remaining.length }} / {{ todos.length }})</span>
+    </h2>
+    <ul v-if="todos.length">
+      <!-- <li>{{ todos[0] }}</li>
+      <li>{{ todos[1] }}</li>
+      <li>{{ todos[2] }}</li> -->
+      <li v-for="(todo, index) in todos">
+        <input type="checkbox" v-model="todo.isDone">
+        <span v-bind:class="{done: todo.isDone}">{{ todo.title }}</span>
+        <!-- このv-bindでクラス操作ができる -->
+        <span @click="deleteItem(index)" class="command">[x]</span>
+        <!-- これでindexで指定した番号のものを削除できる -->
+      </li>
+    </ul>
+    <ul v-else>
+      <!-- v-ifがすべてfalseだった場合はv-elseが実行される -->
+      <li>タスクは何もありません。</li>
+    </ul>
+    <!-- <form v-on:submit="addItem"> 
+     v-onとつけることでクリックイベントを設定できる 
+     このv-onは@でも代用できる -->
+    <form @submit.prevent="addItem">
+      <!-- @submit.preventとすれば、表示初期化とデータ追加無効化を防ぐ事ができる -->
+      <p><input type="text" v-model="newItem"></p>
+      <p><input type="submit" value="ToDo追加"></p>
+    </form>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    (function() {
+      'use strict';
+
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          newItem: '',
+          todos: [
+            // 'ベッド上で1分間正座',
+            // '潜在意識音声を聴く',
+            // '本のプチ速読[:5分×２]'
+            {
+              title: 'ベッド上で1分間正座',
+              isDone: true //実行の有無を設定できる
+            },
+            {
+              title: '潜在意識音声を聴く',
+              isDone: true //実行の有無を設定できる
+            },
+            {
+              title: '本のプチ速読[:5分×２]',
+              isDone: false //実行の有無を設定できる
+            },
+          ]
+        },
+        watch: { // これでローカルストレージにデータを保存できる。
+          todos: {
+            handler: function() {
+              localStorage.setItem('todos', JSON.stringify(this.todos)); // JSON形式でデータを保存
+              // alert('データをオートセーブしました。');
+            },
+            deep: true
+          }
+        },
+        mounted: function(){
+          this.todos = JSON.parse(localStorage.getItem('todos'))  || []; // プログラムの構文を解析する時に使う
+          // ここまで書けば、データのセーブもロードも可能になる
+        },
+        methods: { // この中に諸々の処理内容を書いていく
+          addItem: function() {
+            var item = { //追加されるタスク分の設定
+              title: this.newItem,
+              isDone: false
+            };
+            this.todos.push(item);
+            // 配列に追加するときの文法の応用
+            this.newItem = '';
+            // これで追加した都度テキストボックスの中身が空欄になる
+          }, //スペルミスもだけど、こういう「,」も結構付け忘れるから気を付けろ！
+          deleteItem: function(index) {
+            if(confirm('削除してもいいですか？')){
+              this.todos.splice(index, 1);
+              // 配列から削除するときの文法。index番目から一つ削除される
+            }
+          },
+          purge: function() {
+            if (!confirm('一括削除しますか？')) {
+              return;
+            }
+            this.todos = this.remaining; // 残っているもの、という意味
+          }
+        },
+        computed: { // ここに「算出プロパティ」を書いていく
+          remaining: function(){
+            return this.todos.filter(function(todo){
+              return !todo.isDone; // 未実施のものを返す
+            });
+          }
+        }
+    });
+    })();
+  </script>
+</body>
+</html>

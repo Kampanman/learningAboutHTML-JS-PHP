@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyModalWindow</title>
+  <style>
+    body {font-size: 14px;}
+
+    #open, #close {
+      cursor: pointer;
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-align: center;
+      padding: 12px 0;
+      margin: 16px auto 0;
+    }
+
+    #mask {
+      background: rgba(0,0,0,0.4);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    #modal {
+      background: #fff;
+      width: 300px;
+      padding: 20px;
+      border-radius: 4px;
+      position: absolute;
+      top: 40px; /* bottomはつけない */
+      right: 0;
+      left: 0;
+      margin: 0 auto;
+      transition: transform 0.4s;
+      z-index: 2;
+    }
+
+    #modal>p {margin: 0 0 20px;}
+
+    #mask.hidden {display: none;}
+    #modal.hidden {transform: translate(0,-500px);}
+    /* translateの値を負の値にしていれば、最初に画面には表示されないだろう */
+  </style>
+</head>
+<body>
+  
+  <section id="modal" class="hidden" style="text-align: center;">
+    <p>ぞ～さん　ぞ～さん</br>お～鼻が長いのネ</br>
+    そ～～～ヨ</br>
+    <b style="color: red; font-size: 20px;">チ〇チンも</b></br>
+    な～～がいのヨォォォォ</p>
+    <p style="text-align: right;">by Dear <b>Ken Shimura</b></p>
+    <div id="close">閉じる</div>
+  </section>
+
+  <div id="open">詳細を見る</div>
+
+  <div id="mask" class="hidden"></div>
+  
+    <script>
+      'use strict';
+      {
+        const dc = document;
+        const open = dc.getElementById('open');
+        const close = dc.getElementById('close');
+        const modal = dc.getElementById('modal');
+        const mask = dc.getElementById('mask');
+
+        open.addEventListener('click', ()=> {
+          modal.classList.remove('hidden');
+          mask.classList.remove('hidden');
+        });
+        close.addEventListener('click', ()=> {
+          modal.classList.add('hidden');
+          mask.classList.add('hidden');
+        });
+        mask.addEventListener('click', ()=> {
+          // modal.classList.add('hidden');
+          // mask.classList.add('hidden');
+          close.click(); //closeのonClickと同じ働きをする
+        });
+      }
+    </script>
+</body>
+</html>

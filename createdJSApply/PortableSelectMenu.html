@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Sight</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <style>
+    body{
+      margin: 0;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    header {
+      display: flex;
+      padding: 0 16px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 64px;
+    }
+
+    .sp-menu {margin-left: auto; /* こうすれば中の要素が右に寄る */}
+    .sp-menu #open{
+      font-size: 32px;
+      line-height: 64px;
+      cursor: pointer;
+    }
+
+    .sp-menu #open.hide {display: none;}
+
+    main {padding: 0 16px;}
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background: white;
+      text-align: center;
+      padding: 64px;
+      opacity:0;
+      pointer-events: none;
+      transition: opacity .6s; /* これで0.6秒分のフェードアニメーションができる */
+    }
+
+    .overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .overlay #close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 32px;
+      cursor: pointer;
+    }
+
+    .overlay ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .overlay li {
+      margin-top: 24px;
+      opacity: 0;
+      transform: translateY(16px); /* これで下から16pxの間隔で移動するようにアニメーションを設定できる */
+      transition: opacity .3s, transform .3s;
+    }
+
+    .overlay.show li {
+      opacity: 1;
+      transform: none;
+    }
+    .overlay.show li:nth-child(1) {transition-delay: .1s;}
+    .overlay.show li:nth-child(2) {transition-delay: .2s;}
+    .overlay.show li:nth-child(3) {transition-delay: .3s;}
+
+    .pc-menu {display: none;}
+    .pc-menu ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    .pc-menu a {
+      display: block;
+      width: 80px;
+      line-height: 64px;
+      text-align: center;
+    }
+    .pc-menu a:hover {
+      background: cornsilk;
+    }
+
+    @media (min-width: 600px) {
+      .pc-menu {
+        display: block;
+        margin-left: auto;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>LOGO</h1>
+    </div>
+    <!-- ↓ＰＣ用のメニュー -->
+    <div class="pc-menu">
+      <nav>
+        <ul>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Menu</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!-- ↓スマートフォン用のメニュー -->
+    <div class="sp-menu">
+      <!-- Material Icons Guide と検索して出てきたサイトにあったアイコン -->
+      <span class="material-icons" id="open">menu</span>
+      <!-- ↑ https://google.github.io/material-design-icons/#icon-font-for-the-web を参照せよ -->
+    </div>
+  </header>
+  <div class="overlay">
+    <span class="material-icons" id="close">close</span>  
+    <nav>
+      <ul>
+        <li><a href="#">Menu</a></li>
+        <li><a href="#">Menu</a></li>
+        <li><a href="#">Menu</a></li>
+      </ul>
+    </nav>
+  </div>
+  <main>
+    <p>アイ～ン！</p>
+    <p>アイ～ン！</p>
+    <p>アイ～ン！</p>
+  </main>
+  
+  <script>
+    'use strict';
+
+    {
+      const dc = document;
+      const open = dc.getElementById('open');
+      const overlay = dc.querySelector('.overlay');
+      const close = dc.getElementById('close');
+
+      open.addEventListener('click', ()=> {
+        overlay.classList.add('show');
+        open.classList.add('hide');
+      });
+
+      close.addEventListener('click', ()=> {
+        //openのクリックイベントでつけた分のクラスを逆に取り去ればよい。
+        overlay.classList.remove('show');
+        open.classList.remove('hide');
+      });
+    }
+  </script>
+</body>
+</html>

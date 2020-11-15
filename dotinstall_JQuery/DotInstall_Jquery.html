@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>jQueryの練習</title>
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <style>
+      .font36 {
+          font-size:36px;
+      }
+    </style>
+</head>
+<body>
+    <h1>jQueryの練習</h1>
+    <div id="main">
+        <p>これは練習です。こちらは、<a href="http://google.com/">リンク</a>です。</p>
+        <ul id="menu">
+            <li>0番</li>
+            <li class="listitem">1番</li>
+            <li class="listitem">2番</li>
+            <li><a href="http://yahoo.com/">3番</a></li>
+        </ul>
+    </div><!-- /main -->
+    <script>
+        $(function() {
+            // セレクタ.メソッド
+            // html要素 h1 p img
+            // id要素 #
+            // class要素 .
+            // 複数の要素 ,
+            // 親子要素 >
+            // 子孫要素 
+            $('#main a').css('color', 'orange');
+            // フィルタ
+            // :first
+            // :last
+            // :even :odd
+            // :eq
+            // :gt
+            // :contains
+            $('li:contains("2番")').css('color', 'green');
+            $('li').css({ //こういう風に{}で囲んでcssファイル内のように記述すればいい。
+                'border': '1px solid #ccc',
+                'font-size': '14px'
+            });
+
+            // セレクタ.メソッド
+            // .addClass, .removeClass
+            $('li').addClass('font36');
+            $('li:eq(2)').removeClass('font36');
+            console.log($('li').css('font-size'));
+        });
+    </script>
+</body>
+</html>
